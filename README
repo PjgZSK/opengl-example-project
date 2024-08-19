@@ -1,1 +1,6 @@
 A project for learning OpenGL
+
+1. Build GLFW
+    cmake -S glfw/ -B build/glfw/
+    - windows
+        Open sln project and build
