@@ -1,1 +1,12 @@
 A project for learning OpenGL
+
+1. How to build glfw?
+    On Windows:
+        install cmake, ninja, msvc compiler toolset
+        generate ninja build system(in cmd shell)
+            cmd.exe /c "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" && CMake -B build -G "Ninja Multi-Config" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+        build debug lib
+            cmake --build build --config Debug
+        build release lib
+            cmake --build build --config Release
+
