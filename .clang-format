@@ -91,15 +91,17 @@ BinPackParameters: false
 # BS_GNU (in configuration: GNU) Always break before braces and add an extra level of indentation to braces of control statements, not to those of class, function or other definitions.
 BraceWrapping:
   AfterClass:      true
-  AfterControlStatement: false
-  AfterEnum:       false
+  AfterControlStatement: Always 
+  AfterCaseLabel:  true
+  AfterEnum:       true 
   AfterFunction:   true
-  AfterNamespace:  false
-  AfterObjCDeclaration: false
+  AfterNamespace:  true 
+  AfterObjCDeclaration: true 
   AfterStruct:     true
-  AfterUnion:      false
-  BeforeCatch:     false
-  BeforeElse:      false
+  AfterUnion:      true 
+  AfterExternBlock: true
+  BeforeCatch:     true 
+  BeforeElse:      true 
   IndentBraces:    false
   SplitEmptyFunction: false
 BreakBeforeBraces: Custom
@@ -156,7 +158,7 @@ IncludeBlocks: Preserve
 
 # Indent case labels one level from the switch statement.
 # When false, use the same indentation level as for the switch statement. Switch statement body is always indented one level more than case labels.
-IndentCaseLabels: false
+IndentCaseLabels: true 
 
 # The preprocessor directive indenting style to use.
 IndentPPDirectives: BeforeHash
@@ -266,4 +268,4 @@ TabWidth: 4
 # UT_Never (in configuration: Never) Never use tab.
 # UT_ForIndentation (in configuration: ForIndentation) Use tabs only for indentation.
 # UT_Always (in configuration: Always) Use tabs whenever we need to fill whitespace that spans at least from one tab stop to the next one.
-UseTab: Never
+UseTab: Never 
