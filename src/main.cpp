@@ -1,3 +1,4 @@
+#include <any>
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
@@ -37,6 +38,40 @@ int main()
 
     glViewport(0, 0, WIDTH, HEIGHT);
 
+    float vertexPositons[] = {
+        0.0f, 0.5f, 0.0f, 1.0f, 
+        0.5f, 0.0f, 0.0f, 1.0f, 
+        1.0f, 0.5f, 0.0f, 1.0f,
+    };
+    
+    GLuint positionBufferObject;
+    glGenBuffers(1, &positionBufferObject);
+    glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositons), vertexPositons,
+                 GL_STATIC_DRAW);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+    const char* vert_shader = R"( 
+        #version 330 
+        layout(location = 0) in vec4 pos;
+        void main() 
+        {
+           gl_Position = pos; 
+        } 
+    )";
+    
+    
+    const char* frag_shader = R"(
+        #version 330
+        out vec4 outColor;
+        void main()
+        {
+            outColor = vec4(1.0, 1.0, 1.0, 1.0); 
+        } 
+    )";
     while (!glfwWindowShouldClose(windows))
     {
         glfwPollEvents();
