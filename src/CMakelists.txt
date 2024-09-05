@@ -17,6 +17,11 @@ if(WIN32)
     set(EXAMPLE_GLFW_LIB_DIR "${CMAKE_SOURCE_DIR}/deps/windows")
 endif()
 
+if(APPLE)
+    set(EXAMPLE_GLFW_LIB_DIR "${CMAKE_SOURCE_DIR}/deps/osx")
+    target_link_libraries(entry PRIVATE "-framework Cocoa" "-framework OpenGL" "-framework IOKit" "-framework QuartzCore")
+endif()
+
 message(STATUS ${EXAMPLE_GLFW_LIB_DIR})
 target_link_directories(entry PRIVATE ${EXAMPLE_GLFW_LIB_DIR})
 
