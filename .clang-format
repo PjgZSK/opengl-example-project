@@ -156,6 +156,9 @@ FixNamespaceComments: true
 # Dependent on the value, multiple #include blocks can be sorted as one and divided based on category.
 IncludeBlocks: Preserve
 
+# Disable stupid includes sorting
+SortIncludes: false
+
 # Indent case labels one level from the switch statement.
 # When false, use the same indentation level as for the switch statement. Switch statement body is always indented one level more than case labels.
 IndentCaseLabels: true 
