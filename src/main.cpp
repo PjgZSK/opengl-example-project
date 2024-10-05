@@ -1,11 +1,11 @@
-#include <any>
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
+#include <any>
 #include <iostream>
 
+
 const GLuint WIDTH = 800, HEIGHT = 600;
-void key_callback(GLFWwindow *window, int key, int scancode, int action,
-                  int mods);
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 
 int main()
 {
@@ -18,8 +18,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-    GLFWwindow *windows =
-        glfwCreateWindow(WIDTH, HEIGHT, "Example", NULL, NULL);
+    GLFWwindow* windows = glfwCreateWindow(WIDTH, HEIGHT, "Example", NULL, NULL);
     glfwMakeContextCurrent(windows);
     if (windows == NULL)
     {
@@ -39,16 +38,24 @@ int main()
     glViewport(0, 0, WIDTH, HEIGHT);
 
     float vertexPositons[] = {
-        0.0f, 0.5f, 0.0f, 1.0f, 
-        0.5f, 0.0f, 0.0f, 1.0f, 
-        1.0f, 0.5f, 0.0f, 1.0f,
+        0.0f,
+        0.5f,
+        0.0f,
+        1.0f,
+        0.5f,
+        0.0f,
+        0.0f,
+        1.0f,
+        1.0f,
+        0.5f,
+        0.0f,
+        1.0f,
     };
-    
+
     GLuint positionBufferObject;
     glGenBuffers(1, &positionBufferObject);
     glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositons), vertexPositons,
-                 GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositons), vertexPositons, GL_STATIC_DRAW);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
     glEnableVertexAttribArray(0);
@@ -62,8 +69,8 @@ int main()
            gl_Position = pos; 
         } 
     )";
-    
-    
+
+
     const char* frag_shader = R"(
         #version 330
         out vec4 outColor;
@@ -86,8 +93,7 @@ int main()
     return 0;
 }
 
-void key_callback(GLFWwindow *window, int key, int scancode, int action,
-                  int mods)
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
     // TODO
     std::cout << "input key: " << key << std::endl;
