@@ -30,11 +30,14 @@
         {
             "label": "build and run release",
             "type": "shell",
-            "command": "cmake --build build --config Release && .\\Build\\src\\Release\\entry.exe",
             "group": "build",
             "windows": {
-                "problemMatcher": "$msCompile"
+                "problemMatcher": "$msCompile",
+                "command": "cmake --build build --config Release && .\\Build\\src\\Release\\entry.exe",
             },
+            "osx": {
+                "command": "cmake --build build --config Release && ./Build/src/Release/entry",
+            }
         },
         {
             "label": "build-debug",
