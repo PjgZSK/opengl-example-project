@@ -36,18 +36,18 @@ int main()
     glViewport(0, 0, WIDTH, HEIGHT);
 
     float vertexPositons[] = {
-        0.0f,
-        0.5f,
-        0.0f,
-        1.0f,
-        0.5f,
-        0.0f,
-        0.0f,
-        1.0f,
-        1.0f,
-        0.5f,
-        0.0f,
-        1.0f,
+        0.0F,
+        0.5F,
+        0.0F,
+        1.0F,
+        0.5F,
+        0.0F,
+        0.0F,
+        1.0F,
+        1.0F,
+        0.5F,
+        0.0F,
+        1.0F,
     };
 
     GLuint positionBufferObject = 0;
@@ -77,11 +77,11 @@ int main()
             outColor = vec4(1.0, 1.0, 1.0, 1.0); 
         } 
     )";
-    while (!glfwWindowShouldClose(windows))
+    while (glfwWindowShouldClose(windows) == 0)
     {
         glfwPollEvents();
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        glClearColor(0.2F, 0.3F, 0.3F, 1.0F);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glfwSwapBuffers(windows);
