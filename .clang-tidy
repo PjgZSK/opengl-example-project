@@ -82,12 +82,8 @@ Checks: " \
   , misc-unused-using-decls \
   , readability-* \
   , -readability-convert-member-functions-to-static \
+  , modernize-* \
   "
-
-# removed check
-# 
-#  , modernize-* \
-#
 
 CheckOptions:
   - key: bugprone-misplaced-widening-cast.CheckImplicitCasts
