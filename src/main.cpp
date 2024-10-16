@@ -1,8 +1,6 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
-#include <any>
 #include <iostream>
-
 
 const GLuint WIDTH = 800, HEIGHT = 600;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
