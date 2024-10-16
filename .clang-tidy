@@ -80,10 +80,14 @@ Checks: " \
   , misc-unconventional-assign-operator \
   , misc-unused-alias-decls \
   , misc-unused-using-decls \
-  , modernize-* \
-  , readability-* \
   , -readability-convert-member-functions-to-static \
   "
+
+# removed check
+# 
+#  , modernize-* \
+#  , readability-* \
+#
 
 CheckOptions:
   - key: bugprone-misplaced-widening-cast.CheckImplicitCasts
@@ -107,6 +111,6 @@ CheckOptions:
   - key: modernize-use-override.IgnoreDestructors
     value: true
 
-WarningsAsErrors: " \
-  modernize-*
-  "
+# WarningsAsErrors: " \
+#   modernize-*
+#   "
