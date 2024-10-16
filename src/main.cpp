@@ -50,7 +50,7 @@ int main()
         1.0f,
     };
 
-    GLuint positionBufferObject;
+    GLuint positionBufferObject = 0;
     glGenBuffers(1, &positionBufferObject);
     glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositons), vertexPositons, GL_STATIC_DRAW);
@@ -93,6 +93,6 @@ int main()
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    // TODO
+    // TODO(pjg): 
     std::cout << "input key: " << key << std::endl;
 }
