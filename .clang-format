@@ -6,7 +6,7 @@
 BasedOnStyle: Google
 
 # The extra indent or outdent of access modifiers, e.g. public:.
-AccessModifierOffset: -4
+AccessModifierOffset: -2 
 
 # If true, horizontally aligns arguments after an open bracket.
 # This applies to round brackets (parentheses), angle brackets and square brackets. This will result in formattings like code someLongFunction(argument1, argument2); endcode
