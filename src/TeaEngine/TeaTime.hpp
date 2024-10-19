@@ -10,9 +10,6 @@ namespace Tea::GameEngine
     {
         using time_point = std::chrono::steady_clock::time_point;
 
-        TeaTime() { init(); }
-        ~TeaTime() = default;
-
         time_point _startTimePoint;
         time_point _lastTimePoint;
 
@@ -21,12 +18,14 @@ namespace Tea::GameEngine
         [[nodiscard]] time_point now() const;
 
       public:
+        TeaTime() { init(); }
+        ~TeaTime() = default;
         TeaTime(const TeaTime&) = delete;
         TeaTime(TeaTime&&) = delete;
         TeaTime& operator=(const TeaTime&) = delete;
         TeaTime& operator=(TeaTime&&) = delete;
 
-
+        void recordTime();
         [[nodiscard]] float getDeltaTime() const
         {
             return std::chrono::duration<float>(now() - _lastTimePoint).count();
