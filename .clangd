@@ -40,3 +40,4 @@ Diagnostics:
       - modernize-use-nullptr
       - readability-magic-numbers 
       - modernize-avoid-c-arrays
+      - readability-identifier-length
