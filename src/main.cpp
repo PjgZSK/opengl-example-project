@@ -1,6 +1,8 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <numeric>
+#include "TeaEngine/TeaTime.hpp"
 
 const GLuint WIDTH = 800, HEIGHT = 600;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -95,11 +97,21 @@ int main()
             outColor = vec4(1.0, 1.0, 1.0, 1.0); 
         } 
     )";
+
+    // const float frameTime = 1 / 60.0F;
+    Tea::GameEngine::TeaTime* ins = Tea::GameEngine::TeaTime::getInstance();
     while (glfwWindowShouldClose(window) == 0)
     {
         glfwPollEvents();
 
-        glClearColor(0.2F, 0.3F, 0.3F, 1.0F);
+        float dt = ins->getDeltaTime();
+        // do some animation work
+        ins->recordTime();
+
+        const float changePeriod = 1.2F;
+        float per = (fmod(ins->getTotalTime(), changePeriod)) / changePeriod;
+        float v = per * 1.0F;
+        glClearColor(v, v, v, 1.0F);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glfwSwapBuffers(window);
