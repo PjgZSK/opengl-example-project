@@ -98,6 +98,7 @@ int main()
         } 
     )";
 
+    glfwPollEvents();
     // const float frameTime = 1 / 60.0F;
     Tea::GameEngine::TeaTime* ins = Tea::GameEngine::TeaTime::getInstance();
     while (glfwWindowShouldClose(window) == 0)
@@ -111,6 +112,7 @@ int main()
         const float changePeriod = 2.5F;
         float per = (fmod(ins->getTotalTime(), changePeriod)) / changePeriod;
         float v = per * 1.0F * 2;
+        std::cout << "per: " << per << std::endl;
         v = v > 1.0F ? 2.0F - v : v;
         glClearColor(v, 0.0F, 0.0F, 1.0F);
         glClear(GL_COLOR_BUFFER_BIT);
