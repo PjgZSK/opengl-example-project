@@ -108,10 +108,11 @@ int main()
         // do some animation work
         ins->recordTime();
 
-        const float changePeriod = 1.2F;
+        const float changePeriod = 2.5F;
         float per = (fmod(ins->getTotalTime(), changePeriod)) / changePeriod;
-        float v = per * 1.0F;
-        glClearColor(v, v, v, 1.0F);
+        float v = per * 1.0F * 2;
+        v = v > 1.0F ? 2.0F - v : v;
+        glClearColor(v, 0.0F, 0.0F, 1.0F);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glfwSwapBuffers(window);
