@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include "TeaEngine/TeaTime.hpp"
+#include "example/DotApplication.hpp"
 
 const GLuint WIDTH = 800, HEIGHT = 600;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -96,17 +97,13 @@ int main()
             outColor = vec4(1.0, 1.0, 1.0, 1.0); 
         } 
     )";
-
     glfwPollEvents();
 
+    auto* app = new DotApplication();
     Tea::GameEngine::TeaTime* ins = Tea::GameEngine::TeaTime::getInstance();
     while (glfwWindowShouldClose(window) == 0)
     {
         glfwPollEvents();
-
-        float dt = ins->getDeltaTime();
-        // do some animation work
-        ins->recordTime();
 
         float currentTime = ins->getTotalTime();
         const GLfloat color[] = {
@@ -116,9 +113,14 @@ int main()
             1.0F};
         glClearBufferfv(GL_COLOR, 0, color);
 
+        float dt = ins->getDeltaTime();
+        app->render(dt);
+        ins->recordTime();
+
         glfwSwapBuffers(window);
     }
 
+    delete app;
     glfwTerminate();
     return 0;
 }
