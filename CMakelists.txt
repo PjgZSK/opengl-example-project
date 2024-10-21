@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.17)
 project(OpenGL-Example VERSION 0.0.1 LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_STANDARD 23)
+# msvs support c++23 only bying -std::latest flag, and clangd don't support -std::latest flag on hpp file
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_C_STANDARD 23)
 
 # add entry exe
