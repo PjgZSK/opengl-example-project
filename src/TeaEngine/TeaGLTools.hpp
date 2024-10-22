@@ -8,7 +8,7 @@ namespace Tea::GameEngine
     class TeaGLTools
     {
       public:
-        static GLuint compileShader(const char* vert, const char* frag);
+        static GLuint compileShader(const GLchar*  vert, const GLchar* frag);
     };
 } // namespace Tea::GameEngine
 

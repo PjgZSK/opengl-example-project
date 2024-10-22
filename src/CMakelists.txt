@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.17)
 add_executable(entry)
 
 add_subdirectory(TeaEngine)
+add_subdirectory(example)
 
 target_sources(entry PRIVATE
     glad/gl.c

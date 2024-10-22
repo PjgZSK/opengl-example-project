@@ -3,6 +3,7 @@
 #include <iostream>
 #include "TeaEngine/TeaTime.hpp"
 #include "example/DotApplication.hpp"
+#include "TeaEngine/Template/TeaApplicationTemplate.hpp"
 
 const GLuint WIDTH = 800, HEIGHT = 600;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -55,63 +56,14 @@ int main()
 
     glViewport(0, 0, WIDTH, HEIGHT);
 
-    float vertexPositions[] = {
-        0.0F,
-        0.5F,
-        0.0F,
-        1.0F,
-        0.5F,
-        0.0F,
-        0.0F,
-        1.0F,
-        1.0F,
-        0.5F,
-        0.0F,
-        1.0F,
-    };
-
-    GLuint positionBufferObject = 0;
-    glGenBuffers(1, &positionBufferObject);
-    glBindBuffer(GL_ARRAY_BUFFER, positionBufferObject);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositions), vertexPositions, GL_STATIC_DRAW);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
-
-    const char* vert_shader = R"( 
-        #version 330 
-        layout(location = 0) in vec4 pos;
-        void main() 
-        {
-           gl_Position = pos; 
-        } 
-    )";
-
-
-    const char* frag_shader = R"(
-        #version 330
-        out vec4 outColor;
-        void main()
-        {
-            outColor = vec4(1.0, 1.0, 1.0, 1.0); 
-        } 
-    )";
     glfwPollEvents();
 
-    auto* app = new DotApplication();
+    using namespace Tea::Template;
+    auto* app = TeaApplicationTemplate::Create<DotApplication>();
     Tea::GameEngine::TeaTime* ins = Tea::GameEngine::TeaTime::getInstance();
     while (glfwWindowShouldClose(window) == 0)
     {
         glfwPollEvents();
-
-        float currentTime = ins->getTotalTime();
-        const GLfloat color[] = {
-            sinf(currentTime) * 0.5F + 0.5F,
-            cosf(currentTime) * 0.5F + 0.5F,
-            0.0F,
-            1.0F};
-        glClearBufferfv(GL_COLOR, 0, color);
 
         float dt = ins->getDeltaTime();
         app->render(dt);
@@ -120,7 +72,7 @@ int main()
         glfwSwapBuffers(window);
     }
 
-    delete app;
+    TeaApplicationTemplate::Destory(app);
     glfwTerminate();
     return 0;
 }
