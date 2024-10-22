@@ -14,14 +14,14 @@ void DotApplication::render(float deltaTime)
     glClearBufferfv(GL_COLOR, 0, color);
 
     glPointSize(40);
-    glUseProgram(programId);
-    glDrawArrays(GL_POINTS, 0, 1);
+    glUseProgram(programID);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
 void DotApplication::onConstruct()
 {
     elapsed = 0.0F;
-    programId = Tea::GameEngine::TeaGLTools::compileShader(
+    programID = Tea::GameEngine::TeaGLTools::compileShader(
         ShaderString::dot_vert_shader,
         ShaderString::dot_frag_shader);
     glGenVertexArrays(1, &vertexArrayObj);
@@ -30,6 +30,6 @@ void DotApplication::onConstruct()
 
 void DotApplication::onDestruct()
 {
-    glad_glDeleteProgram(programId);
+    glad_glDeleteProgram(programID);
     glDeleteVertexArrays(1, &vertexArrayObj);
 }

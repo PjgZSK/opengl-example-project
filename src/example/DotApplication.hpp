@@ -9,7 +9,7 @@ class DotApplication : public Tea::GameEngine::TeaApplication
     TeaAppPreProcess;
 
   private:
-    GLuint programId;
+    GLuint programID;
     GLuint vertexArrayObj;
     float elapsed;
 
