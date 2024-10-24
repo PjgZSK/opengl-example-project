@@ -13,6 +13,11 @@ namespace Tea::Template
     class TeaApplicationTemplate
     {
       public:
+        /*! @brief create a specific application
+        *  @return the created application pointer if success, 
+        * 
+        * nullptr if failed
+        */
         template <typename T>
             requires std::is_base_of_v<Tea::GameEngine::TeaApplication, T>
         static inline T* Create()
