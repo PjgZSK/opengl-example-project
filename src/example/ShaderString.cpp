@@ -3,7 +3,7 @@
 
 const GLchar* const ShaderString::dot_vert_shader =
     R"(
-#version 430 core
+#version 410 core
 
 void main(void)
 {
@@ -18,7 +18,7 @@ void main(void)
 
 const GLchar* const ShaderString::dot_frag_shader =
     R"(
-#version 430 core
+#version 410 core
 
 out vec4 color;
 
