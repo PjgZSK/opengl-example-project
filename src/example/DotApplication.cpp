@@ -30,6 +30,6 @@ void DotApplication::onConstruct()
 
 void DotApplication::onDestruct()
 {
-    glad_glDeleteProgram(programID);
+    glDeleteProgram(programID);
     glDeleteVertexArrays(1, &vertexArrayObj);
 }
