@@ -6,12 +6,14 @@ add_subdirectory(TeaEngine)
 add_subdirectory(example)
 
 target_sources(entry PRIVATE
-    glad/gl.c
+    glad/src/gl.c
     main.cpp
 )
 
 target_include_directories(entry SYSTEM PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}"
+    "${CMAKE_CURRENT_SOURCE_DIR}/GLFW"
+    "${CMAKE_CURRENT_SOURCE_DIR}/glad/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/TeaEngine"
 )
 
