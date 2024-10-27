@@ -3,6 +3,7 @@
 #include <iostream>
 #include "TeaEngine/TeaTime.hpp"
 #include "example/DotApplication.hpp"
+#include "example/FullShaderApplication.hpp"
 #include "TeaEngine/Template/TeaApplicationTemplate.hpp"
 
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -59,7 +60,7 @@ int main()
     glfwPollEvents();
 
     using namespace Tea::Template;
-    auto* app = TeaApplicationTemplate::Create<DotApplication>();
+    auto* app = TeaApplicationTemplate::Create<FullShaderApplication>();
     Tea::GameEngine::TeaTime* ins = Tea::GameEngine::TeaTime::getInstance();
     while (glfwWindowShouldClose(window) == 0)
     {
