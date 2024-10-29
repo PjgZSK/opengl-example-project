@@ -4,7 +4,7 @@
 
 void FullShaderApplication::render(float deltaTime)
 {
-    glClearBufferfv(GL_COLOR, 0, new GLfloat[]{0.0f, 0.0f, 0.0f, 1.0f});
+    glClearBufferfv(GL_COLOR, 0, new GLfloat[]{0.0F, 0.0F, 0.0F, 1.0F});
 
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glPointSize(5.0);
