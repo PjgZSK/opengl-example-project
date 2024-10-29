@@ -26,67 +26,62 @@ void Tea::GameEngine::TeaGLTools::CheckProgramLink(GLuint program)
     }
 }
 
-GLuint Tea::GameEngine::TeaGLTools::compileProgram(
-    const GLchar* const vert,
-    const GLchar* const frag,
-    const GLchar* const tcs,
-    const GLchar* const tes)
+GLuint Tea::GameEngine::TeaGLTools::compileSingleShader(const GLchar* const tes, GLenum shaderType)
 {
-    // TODO(pjg): add error check
-    auto vShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vShader, 1, &vert, nullptr);
-    glCompileShader(vShader);
-    CheckShaderCompile(vShader, vert);
-
-    auto fShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fShader, 1, &frag, nullptr);
-    glCompileShader(fShader);
-    CheckShaderCompile(fShader, frag);
-
-    GLuint tcShader = 0;
-    if (tcs != nullptr)
-    {
-        tcShader = glCreateShader(GL_TESS_CONTROL_SHADER);
-        glShaderSource(tcShader, 1, &tcs, nullptr);
-        glCompileShader(tcShader);
-
-        CheckShaderCompile(tcShader, tcs);
-    }
-
     GLuint teShader = 0;
     if (tes != nullptr)
     {
-        teShader = glCreateShader(GL_TESS_EVALUATION_SHADER);
+        teShader = glCreateShader(shaderType);
         glShaderSource(teShader, 1, &tes, nullptr);
         glCompileShader(teShader);
 
         CheckShaderCompile(teShader, tes);
     }
+    return teShader;
+}
+void Tea::GameEngine::TeaGLTools::attachShaders(GLuint program, const GLuint* shaders, GLuint count)
+{
+    for (GLuint i = 0; i < count; i++)
+    {
+        if (shaders[i] == 0)
+        {
+            continue;
+        }
+        glAttachShader(program, shaders[i]);
+    }
+}
+void Tea::GameEngine::TeaGLTools::deleteShaders(const GLuint* shaders, GLuint count)
+{
+    for (GLuint i = 0; i < count; i++)
+    {
+        if (shaders[i] == 0)
+        {
+            continue;
+        }
+        glDeleteShader(shaders[i]);
+    }
+}
+GLuint Tea::GameEngine::TeaGLTools::compileProgram(
+    const GLchar* const vert,
+    const GLchar* const frag,
+    const GLchar* const tcs,
+    const GLchar* const tes,
+    const GLchar* const geometry)
+{
+    const GLuint shaderCount = 5;
+    const auto* shaders = new GLuint[shaderCount]{
+        compileSingleShader(vert, GL_VERTEX_SHADER),
+        compileSingleShader(frag, GL_FRAGMENT_SHADER),
+        compileSingleShader(tcs, GL_TESS_CONTROL_SHADER),
+        compileSingleShader(tes, GL_TESS_EVALUATION_SHADER),
+        compileSingleShader(geometry, GL_GEOMETRY_SHADER),
+    };
 
     auto program = glCreateProgram();
-    glAttachShader(program, vShader);
-    glAttachShader(program, fShader);
-    if (tcShader != 0)
-    {
-        glAttachShader(program, tcShader);
-    }
-    if (teShader != 0)
-    {
-        glAttachShader(program, teShader);
-    }
-
+    attachShaders(program, shaders, shaderCount);
     glLinkProgram(program);
     CheckProgramLink(program);
+    deleteShaders(shaders, shaderCount);
 
-    glDeleteShader(vShader);
-    glDeleteShader(fShader);
-    if (tcShader != 0)
-    {
-        glDeleteShader(tcShader);
-    }
-    if (teShader != 0)
-    {
-        glDeleteShader(teShader);
-    }
     return program;
 }

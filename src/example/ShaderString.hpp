@@ -13,5 +13,6 @@ class ShaderString
     static const GLchar* const full_frag_shader;
     static const GLchar* const full_tcontrol_shader;
     static const GLchar* const full_tevaluation_shader;
+    static const GLchar* const full_geometry_shader;
 };
 #endif

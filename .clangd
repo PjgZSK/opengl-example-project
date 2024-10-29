@@ -19,6 +19,7 @@ CompileFlags:
     - -Wno-zero-as-null-pointer-constant
     - -Wno-c++98-compat
     - -Wno-newline-eof 
+    - -Wno-unsafe-buffer-usage
 #  Remove: -mabi
 #  Compiler: /usr/bin/clang++
 
