@@ -46,13 +46,7 @@ const GLchar* const ShaderString::full_vert_shader =
     R"(
 #version 410 core
 
-// layout (location = 0) in vec4 offset;
-// layout (location = 1) in vec4 color;
-
-// out VS_OUT
-// {
-//     vec4 vs_color;
-// }vs_out;
+out vec4 vs_color;
 
 void main(void)
 {
@@ -61,12 +55,18 @@ void main(void)
         vec4(0.5, 0.5, 0.5, 1.0),
         vec4(0.5, -0.5, 0.5, 1.0)
     );
+    const vec4 color[3] = vec4[3](
+        vec4(1.0, 0.0, 0.0, 1.0),
+        vec4(0.0, 1.0, 0.0, 1.0),
+        vec4(0.0, 0.0, 1.0, 1.0)
+    );
+
     gl_Position = vertices[gl_VertexID];
-    // vs_out.vs_color = color;
+    vs_color = color[gl_VertexID];
 }
 )";
 
-
+// skipped
 const GLchar* const ShaderString::full_tcontrol_shader =
     R"(
 #version 410 core
@@ -86,6 +86,7 @@ void main(void)
 }
 )";
 
+// skipped
 const GLchar* const ShaderString::full_tevaluation_shader =
     R"(
 #version 410 core
@@ -100,6 +101,7 @@ void main(void)
 }
 )";
 
+// skipped 
 const GLchar* const ShaderString::full_geometry_shader =
     R"(
 #version 410 core
@@ -121,17 +123,17 @@ const GLchar* const ShaderString::full_frag_shader =
     R"(
 #version 410 core
 
-// in VS_OUT
-// {
-//     vec4 vs_color;
-// }fs_in;
-
 out vec4 color;
+
+in vec4 vs_color;
 
 void main(void)
 {
-    // color = fs_in.vs_color;
-    color = vec4(1.0, 1.0, 1.0, 1.0);
+    // color = vec4(sin(gl_FragCoord.x * 0.25) * 0.5 + 0.5, 
+    //             cos(gl_FragCoord.y * 0.25) * 0.5 + 0.5, 
+    //             sin(gl_FragCoord.x * 0.15) * cos(gl_FragCoord.y * 0.15), 
+    //             1.0);
+    color = vs_color;
 }
 )";
 
