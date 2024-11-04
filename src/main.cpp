@@ -41,6 +41,52 @@ static int loadGLFunc()
     return 0;
 }
 
+/*
+positive 2d coordinate
+cos     sin
+-sin    cos
+negative 2d coordinate
+cos     -sin
+sin     cos
+
+counterclockwise
+left-handed coordinate
+x
+1       0       0
+0       cos     -sin
+0       sin    cos
+
+y
+cos     0       sin
+0       1       0
+-sin    0       cos
+
+z
+cos     -sin    0
+sin     cos     0
+0       0       1
+
+
+counterclockwise
+right-handed coordinate
+x
+1   0   0
+0   cos sin
+0   -sin cos
+
+y
+cos     0   -sin
+0       1   0
+sin     0   cos
+
+there is a counterclockwise issue that the view point is 'out' of screen which 
+is -z in right-handed coordinate
+z
+cos     -sin    0
+sin     cos     0
+0       0       1
+*/
+
 int main()
 {
     GLFWwindow* window = initWindow();

@@ -50,7 +50,7 @@ out vec4 vs_color;
 
 void main(void)
 {
-    const vec4 vertices[3] = vec4[3](
+    vec4 vertices[3] = vec4[3](
         vec4(-0.5, -0.5, 0.5, 1.0),
         vec4(0.5, 0.5, 0.5, 1.0),
         vec4(0.5, -0.5, 0.5, 1.0)
@@ -60,6 +60,16 @@ void main(void)
         vec4(0.0, 1.0, 0.0, 1.0),
         vec4(0.0, 0.0, 1.0, 1.0)
     );
+
+    const mat4 rotateMatrix = mat4(
+        vec4(cos(0.5), -sin(0.5), 0, 0), 
+        vec4(sin(0.5), cos(0.5), 0, 0), 
+        vec4(0, 0, 1, 0), 
+        vec4(0, 0, 0, 1) 
+    );
+    vertices[0] = vertices[0] * rotateMatrix;
+    vertices[1] = vertices[1] * rotateMatrix;
+    vertices[2] = vertices[2] * rotateMatrix;
 
     gl_Position = vertices[gl_VertexID];
     vs_color = color[gl_VertexID];
