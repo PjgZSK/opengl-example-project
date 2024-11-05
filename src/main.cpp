@@ -1,5 +1,6 @@
 #include <glad/gl.h>
 #include <GLFW/glfw3.h>
+#include <Math/vec.hpp>
 #include <iostream>
 #include "TeaEngine/TeaTime.hpp"
 #include "example/DotApplication.hpp"
@@ -79,7 +80,7 @@ cos     0   -sin
 0       1   0
 sin     0   cos
 
-there is a counterclockwise issue that the view point is 'out' of screen which 
+there is a counterclockwise issue that the view point is 'out' of screen which
 is -z in right-handed coordinate
 z
 cos     -sin    0
@@ -89,6 +90,7 @@ sin     cos     0
 
 int main()
 {
+    auto* v = new Tea::Math::_vec2<float>{0, 1};
     GLFWwindow* window = initWindow();
     if (window == NULL)
     {
